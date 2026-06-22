@@ -1,0 +1,9 @@
+(* MLB for sml-doc: the vendored sml-mlast frontend and sml-html renderer
+ * (which itself vendors sml-buffer), then the doc generator. *)
+$(SML_LIB)/basis/basis.mlb
+
+../lib/github.com/sjqtentacles/sml-mlast/sources.mlb
+../lib/github.com/sjqtentacles/sml-html/sources.mlb
+
+doc.sig
+doc.sml
