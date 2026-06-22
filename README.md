@@ -1,5 +1,9 @@
 # sml-doc
 
+> A pure Standard ML documentation generator emitting static HTML/Markdown.
+
+[![CI](https://github.com/sjqtentacles/sml-doc/actions/workflows/ci.yml/badge.svg)](https://github.com/sjqtentacles/sml-doc/actions)
+
 A **documentation generator for Standard ML** built on the
 [`sml-mlast`](https://github.com/sjqtentacles/sml-mlast) frontend and the
 [`sml-html`](https://github.com/sjqtentacles/sml-html) renderer. It parses
@@ -14,6 +18,20 @@ val html = Doc.renderString
   { title = "my-pkg", files = [("ord.sig", source)] }
 
 Doc.render { root = "src", out = "doc/index.html" }   (* whole directory *)
+```
+
+## Install (smlpkg)
+
+```sh
+smlpkg add github.com/sjqtentacles/sml-doc
+```
+
+or add it to your package's `sml.pkg`:
+
+```
+require {
+  github.com/sjqtentacles/sml-doc
+}
 ```
 
 ## API
