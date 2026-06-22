@@ -113,7 +113,7 @@ struct
   (* ---- item extraction from the AST ---- *)
 
   fun itemsOfSpec sp =
-    case sp of
+    case specNode sp of
         SpecVal binds =>
           List.map (fn (v, t) =>
             { kind = "val", name = v, detail = "val " ^ v ^ " : " ^ PpAst.ppTy t,
@@ -147,10 +147,10 @@ struct
           [ { kind = "include", name = "include", detail = "include", doc = "" } ]
 
   fun itemsOfDec d =
-    case d of
+    case decNode d of
         DVal (_, binds, _) =>
           List.mapPartial
-            (fn (PVar name, _) =>
+            (fn ((PVar name, _), _) =>
                   SOME { kind = "val", name = name, detail = "val " ^ name, doc = "" }
               | _ => NONE) binds
       | DFun (_, funs) =>
@@ -203,7 +203,7 @@ struct
       fun attach (it : item) =
         { kind = #kind it, name = #name it, detail = #detail it, doc = docOf (#name it) }
       fun moduleOfDec d =
-        case d of
+        case decNode d of
             DSignature binds =>
               SOME (List.map (fn (nm, se) =>
                 { kind = "signature", name = nm, doc = docOf nm,
